@@ -8,7 +8,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, Application, CommandHandler, MessageHandler, filters, ContextTypes
 import os
 import asyncio
-
+import sys
 
 # Load environment variables
 load_dotenv()
@@ -169,7 +169,7 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def main():
     print("Bot started...")
-    app = Application.builder().token(TOKEN).build()
+    app = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
     # Delete any existing webhooks before starting polling
     print("Clearing webhooks...")
