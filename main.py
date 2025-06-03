@@ -138,10 +138,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     memory = load_memory()
     user_memory = memory.get(user_id, [])
 
-    print("Memory:")
-    print(memory)
-    print()
-
     result = classify_and_extract(message)
 
     if result["intent"] == "log_run":
@@ -153,6 +149,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_memory.append(entry)
         memory[user_id] = user_memory
         save_memory(memory)
+
+        print("Memory:")
+        print(memory)
+        print()
+
         await update.message.reply_text(f"Logged: {entry['distance_km']} km run on {entry['date']}.")        
     elif result["intent"] == "analyze_progress":
         response = "I beg your pardon?"
