@@ -8,7 +8,6 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, Application, CommandHandler, MessageHandler, filters, ContextTypes
 import os
 import asyncio
-import sys
 
 # Load environment variables
 load_dotenv()
@@ -133,6 +132,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             message: str = message.replace(BOT_USERNAME, "").strip()
         else:
             return
+
+    print(f"User ({update.message.chat.id}) in {message_type}: {message}")
 
     memory = load_memory()
     user_memory = memory.get(user_id, [])
