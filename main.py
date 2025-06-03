@@ -156,6 +156,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     result = classify_and_extract(message)
 
+    print(f"Intent: {result["intent"]}")
+
     if result["intent"] == "log_run":
         date = result["date"]
         entry = {
