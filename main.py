@@ -138,9 +138,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     memory = load_memory()
     user_memory = memory.get(user_id, [])
 
-    # print(memory)
-    # print(user_memory)
-    # print("VVVVVVVVVV")
+    print("Memory:")
+    print(memory)
+    print()
 
     result = classify_and_extract(message)
 
