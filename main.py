@@ -64,10 +64,26 @@ def classify_and_extract(user_message):
         instructions=f"""
         You are a helpful assistant for a running coach bot.
 
-        If the user is logging a run, extract the date (or assume that the date is today), activity, and distance (in km). Set intent to "log_run".
-        I want the date in YYYY-MM-DD format. For reference, today is: {today_str}
-        If the user is asking for progress analysis, set intent to "analyze_progress".
+        If the user is logging a run:
+        >>> Set intent to "log_run".
+        >>> Extract the date (if not provided, assume today). I want the date in YYYY-MM-DD format. For reference, today is: {today_str}
+        >>> Extract the activity ("runnning", "swimming", "walking", "cycling" etc.).
+        >>> Extract the distance (in km).
+
+        If the user is asking for progress analysis:
+        >>> Set intent to "analyze_progress".
+        >>> Set the other fields to null.
+
+        If the user is asking for help:
+        >>> Set intent to "help".
+        >>> Set the other fields to null.
+
+        If the user is asking to see the memory:
+        >>> Set intent to "memory".
+        >>> Set the other fields to null.
+
         Otherwise, set intent to "unknown".
+        If fields are not relevant, use null.
 
         Respond in this JSON format:
         {{
@@ -77,7 +93,7 @@ def classify_and_extract(user_message):
         "date": ...,
         "request_language": ...
         }}
-        If fields are not relevant, use null.
+
         """,
         input=user_message,
     )
